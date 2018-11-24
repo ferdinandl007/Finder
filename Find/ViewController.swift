@@ -8,19 +8,28 @@
 import UIKit
 import SceneKit
 import ARKit
-
+import AVFoundation
 import Vision
+import SceneKit.ModelIO
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDelegate {
     
     // SCENE
     @IBOutlet var sceneView: ARSCNView!
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
+    var latestPredictionPos = SCNVector3()
+    var hasfund = false;
+    var objToFind = ["water bottle","cassette"]
+    let dispatchQ = DispatchQueue(label: "com.hw.dis") // A Serial Queue
     
     // COREML
     var visionRequests = [VNRequest]()
     let dispatchQueueML = DispatchQueue(label: "com.hw.dispatchqueueml") // A Serial Queue
+    
+    let synth = AVSpeechSynthesizer()
+    var node = SCNNode()
+    
     @IBOutlet weak var debugTextView: UITextView!
     
     override func viewDidLoad() {
@@ -35,11 +44,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene
         let scene = SCNScene()
         
+        
         // Set the scene to the view
         sceneView.scene = scene
         
         // Enable Default Lighting - makes the 3D text a bit poppier.
         sceneView.autoenablesDefaultLighting = true
+        
+        sceneView.scene.rootNode.addChildNode(node)
         
         //////////////////////////////////////////////////
         // Tap Gesture Recognizer
@@ -102,6 +114,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Interaction
     
     @objc func handleTap(gestureRecognize: UITapGestureRecognizer) {
+        sppec(text: "your " + objToFind[1] + " is in the kitchen next to the " + objToFind[0])
+    }
+    
+    func sppec(text: String){
+        var myUtterance = AVSpeechUtterance(string: "")
+        myUtterance = AVSpeechUtterance(string: text)
+        myUtterance.rate = 0.5
+        synth.speak(myUtterance)
+    }
+    
+    func makeNode(){
         // HIT TEST : REAL WORLD
         // Get Screen Centre
         let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
@@ -117,8 +140,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let node : SCNNode = createNewBubbleParentNode(latestPrediction)
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
+            latestPredictionPos = worldCoord
+            
         }
     }
+    
+     func nodeForURL() -> SCNNode
+    {
+        guard let url = Bundle.main.url(forResource: "model", withExtension: "obj") else {
+            fatalError("Failed to find model file.")
+        }
+        
+        let asset = MDLAsset(url:url)
+        let object = asset.object(at: 0)
+        let node = SCNNode(mdlObject: object)
+        
+        return node
+    }
+    
+    
+    
+    
     
     func createNewBubbleParentNode(_ text : String) -> SCNNode {
         // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
@@ -154,7 +196,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // BUBBLE PARENT NODE
         let bubbleNodeParent = SCNNode()
-        bubbleNodeParent.addChildNode(bubbleNode)
+        bubbleNodeParent.addChildNode(nodeForURL())
         bubbleNodeParent.addChildNode(sphereNode)
         bubbleNodeParent.constraints = [billboardConstraint]
         
@@ -169,11 +211,46 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         dispatchQueueML.async {
             // 1. Run Update.
             self.updateCoreML()
-            
+            //self.chackDist()
             // 2. Loop this function.
             self.loopCoreMLUpdate()
         }
         
+    }
+    
+
+    var bb = false;
+    var bbb = false
+    func chackDist(){
+        let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
+        
+        let cameraPosition =  self.sceneView.session.currentFrame!.camera.transform.columns.3
+        print("Camera: \(cameraPosition)")
+        let vector = SCNVector3Make(cameraPosition.x, cameraPosition.y - 0.4, cameraPosition.z)
+
+        if abs(d) > 2.0 {
+            node.removeFromParentNode()
+            node = CylinderLine(parent: SCNNode(), v1: vector, v2: latestPredictionPos, radius: 0.02, radSegmentCount: 22, color: UIColor.red)
+            sceneView.scene.rootNode.addChildNode(node)
+
+        } else if abs(d) < 2.0 && bb{
+            node.runAction(SCNAction.sequence([SCNAction.fadeOut(duration: 1.5),SCNAction.run({ (SCNNode) in
+                self.node.removeFromParentNode()
+                self.node.removeAllActions()
+                
+            })]))
+        }
+       
+        if abs(d) > 2.0 && !bbb{
+            sppec(text: "you are moving too far away! Please go back and followe the Red Line!")
+            bbb = true
+            var timer = Timer()
+            timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: false, block: { (Timer) in
+                self.bbb = false
+            })
+            
+            
+        }
     }
     
     func classificationCompleteHandler(request: VNRequest, error: Error?) {
@@ -190,7 +267,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Get Classifications
         let classifications = observations[0...0] // top 2 results
             .compactMap({ $0 as? VNClassificationObservation })
-            .map({ "\($0.identifier) \(String(format:"-%.2f", $0.confidence))" })
+            .map({ "\($0.identifier)\(String(format:"-%.2f", $0.confidence))" })
             .joined(separator: "\n")
         
         DispatchQueue.main.async {
@@ -211,24 +288,29 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             print(objectName)
             print(value)
             
-            if (value <= 0.70) {
-                
+            if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
+                self.latestPrediction = objectName
+                self.makeNode()
+                self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
+                self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
+                self.hasfund = true;
             }
             
             
-            
-            
-            self.latestPrediction = objectName
-            
-            
-            
-            
-            
-            
-            
+            if self.hasfund {
+                self.latestPrediction = objectName
+    
+                self.debugTextView.text = String(format:"-%.2f", self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z))
+                self.chackDist()
+            }
+           
             
             
         }
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        
     }
     
     func distanceFromCamera(x: Float, y:Float, z:Float) -> Float {
