@@ -140,6 +140,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             let node : SCNNode = createNewBubbleParentNode(latestPrediction)
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
+            node.name = "label"
             latestPredictionPos = worldCoord
             
         }
@@ -207,7 +208,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     func loopCoreMLUpdate() {
         // Continuously run CoreML whenever it's ready. (Preventing 'hiccups' in Frame Rate)
-        
         dispatchQueueML.async {
             // 1. Run Update.
             self.updateCoreML()
@@ -253,6 +253,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         }
     }
     
+    
+    var hasfund2 = false
+    
     func classificationCompleteHandler(request: VNRequest, error: Error?) {
         // Catch Errors
         if error != nil {
@@ -288,19 +291,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             print(objectName)
             print(value)
             
-            if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
-                self.latestPrediction = objectName
-                self.makeNode()
-                self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
-                self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
-                self.hasfund = true;
+            
+            let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
+            
+            
+            if self.objToFind.count > 1 {
+                if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
+                    self.latestPrediction = objectName
+                    self.makeNode()
+                    self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
+                    self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
+                    self.hasfund = true;
+                } else if (value >= 0.65 && !self.hasfund2 && self.objToFind[1] == objectName) {
+                    let node = self.sceneView.scene.rootNode.childNode(withName: "label", recursively: false)
+                    node?.removeFromParentNode()
+                    self.makeNode()
+                    self.hasfund2 = true;
+                    self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
+                    self.sppec(text: "you have found your " + self.objToFind[1] + " it is approximately " + String(format:"-%.2f", abs(d) ) + " metres in front of you" )
+                }
+                
+            } else {
+                if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
+                    self.latestPrediction = objectName
+                    self.makeNode()
+                    self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
+                    self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
+                    self.hasfund = true;
+                }
             }
+        
             
-            
-            if self.hasfund {
+            if self.hasfund || self.hasfund2{
                 self.latestPrediction = objectName
-    
-                self.debugTextView.text = String(format:"-%.2f", self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z))
+                self.debugTextView.text = String(format:"-%.2f", d)
                 self.chackDist()
             }
            
