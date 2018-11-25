@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55D84788FC83C6910F84CCAC /* Pods_Find.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF9A44AC3E2F1022D1319B2 /* Pods_Find.framework */; };
+		95FFC00771F1E0504F0123E2 /* Pods_FindTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58549316C12CDEF237178F9 /* Pods_FindTests.framework */; };
+		CA101D379A7D6A3FB48D1FDD /* Pods_FindUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B81667D5090FC1F13A6AF4 /* Pods_FindUITests.framework */; };
 		CF1964FA21A9E79F00B400A2 /* DrawLein.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1964F921A9E79F00B400A2 /* DrawLein.swift */; };
 		CF1964FD21AA02E100B400A2 /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = CF1964FB21AA02E100B400A2 /* model.obj */; };
 		CF1964FE21AA02E100B400A2 /* materials.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CF1964FC21AA02E100B400A2 /* materials.mtl */; };
@@ -41,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2341FF54F0B558F51D946B86 /* Pods-FindTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindTests/Pods-FindTests.debug.xcconfig"; sourceTree = "<group>"; };
+		34963EC3408D7756ED1DB535 /* Pods-FindUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindUITests/Pods-FindUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		622DC510D8F3D75245A25EE6 /* Pods-Find.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find/Pods-Find.release.xcconfig"; sourceTree = "<group>"; };
+		B2E318E138BE56B698E1A20B /* Pods-FindTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindTests/Pods-FindTests.release.xcconfig"; sourceTree = "<group>"; };
 		CF1964F921A9E79F00B400A2 /* DrawLein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawLein.swift; sourceTree = "<group>"; };
 		CF1964FB21AA02E100B400A2 /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model.obj; sourceTree = "<group>"; };
 		CF1964FC21AA02E100B400A2 /* materials.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = materials.mtl; sourceTree = "<group>"; };
@@ -61,6 +68,11 @@
 		CF849E7D21A99C700030ED0A /* FindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUITests.swift; sourceTree = "<group>"; };
 		CF849E7F21A99C700030ED0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF849E8B21A99CE50030ED0A /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		DBF9A44AC3E2F1022D1319B2 /* Pods_Find.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A3AC5E697AE5E728D6522B /* Pods-Find.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find/Pods-Find.debug.xcconfig"; sourceTree = "<group>"; };
+		E2B81667D5090FC1F13A6AF4 /* Pods_FindUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E58549316C12CDEF237178F9 /* Pods_FindTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E76C133470F1CEF965F1172B /* Pods-FindUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindUITests/Pods-FindUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D84788FC83C6910F84CCAC /* Pods_Find.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FFC00771F1E0504F0123E2 /* Pods_FindTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA101D379A7D6A3FB48D1FDD /* Pods_FindUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B3BD1D6C7E4A2FA8A03BF5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1A3AC5E697AE5E728D6522B /* Pods-Find.debug.xcconfig */,
+				622DC510D8F3D75245A25EE6 /* Pods-Find.release.xcconfig */,
+				2341FF54F0B558F51D946B86 /* Pods-FindTests.debug.xcconfig */,
+				B2E318E138BE56B698E1A20B /* Pods-FindTests.release.xcconfig */,
+				34963EC3408D7756ED1DB535 /* Pods-FindUITests.debug.xcconfig */,
+				E76C133470F1CEF965F1172B /* Pods-FindUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C12D3AED3093D49028AF741B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBF9A44AC3E2F1022D1319B2 /* Pods_Find.framework */,
+				E58549316C12CDEF237178F9 /* Pods_FindTests.framework */,
+				E2B81667D5090FC1F13A6AF4 /* Pods_FindUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CF849E4F21A99C6F0030ED0A = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +133,8 @@
 				CF849E7121A99C700030ED0A /* FindTests */,
 				CF849E7C21A99C700030ED0A /* FindUITests */,
 				CF849E5921A99C6F0030ED0A /* Products */,
+				0B3BD1D6C7E4A2FA8A03BF5A /* Pods */,
+				C12D3AED3093D49028AF741B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,9 +193,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF849E8221A99C700030ED0A /* Build configuration list for PBXNativeTarget "Find" */;
 			buildPhases = (
+				D93F58D9EAC083C0219212AB /* [CP] Check Pods Manifest.lock */,
 				CF849E5421A99C6F0030ED0A /* Sources */,
 				CF849E5521A99C6F0030ED0A /* Frameworks */,
 				CF849E5621A99C6F0030ED0A /* Resources */,
+				22F1342CACD4416EF062299E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,6 +212,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF849E8521A99C700030ED0A /* Build configuration list for PBXNativeTarget "FindTests" */;
 			buildPhases = (
+				219894495AFDF66E406095B3 /* [CP] Check Pods Manifest.lock */,
 				CF849E6A21A99C700030ED0A /* Sources */,
 				CF849E6B21A99C700030ED0A /* Frameworks */,
 				CF849E6C21A99C700030ED0A /* Resources */,
@@ -188,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF849E8821A99C700030ED0A /* Build configuration list for PBXNativeTarget "FindUITests" */;
 			buildPhases = (
+				0359CE38B0B70B4453B0CC7C /* [CP] Check Pods Manifest.lock */,
 				CF849E7521A99C700030ED0A /* Sources */,
 				CF849E7621A99C700030ED0A /* Frameworks */,
 				CF849E7721A99C700030ED0A /* Resources */,
@@ -275,6 +319,91 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0359CE38B0B70B4453B0CC7C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FindUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		219894495AFDF66E406095B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FindTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22F1342CACD4416EF062299E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Find/Pods-Find-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Find/Pods-Find-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D93F58D9EAC083C0219212AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Find-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CF849E5421A99C6F0030ED0A /* Sources */ = {
@@ -458,15 +587,13 @@
 		};
 		CF849E8321A99C700030ED0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1A3AC5E697AE5E728D6522B /* Pods-Find.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = Find/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -476,15 +603,13 @@
 		};
 		CF849E8421A99C700030ED0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 622DC510D8F3D75245A25EE6 /* Pods-Find.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = Find/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -494,17 +619,14 @@
 		};
 		CF849E8621A99C700030ED0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2341FF54F0B558F51D946B86 /* Pods-FindTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -515,17 +637,14 @@
 		};
 		CF849E8721A99C700030ED0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2E318E138BE56B698E1A20B /* Pods-FindTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -536,16 +655,13 @@
 		};
 		CF849E8921A99C700030ED0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34963EC3408D7756ED1DB535 /* Pods-FindUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -556,16 +672,13 @@
 		};
 		CF849E8A21A99C700030ED0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E76C133470F1CEF965F1172B /* Pods-FindUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
