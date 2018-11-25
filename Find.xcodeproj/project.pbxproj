@@ -10,6 +10,8 @@
 		CF1964FA21A9E79F00B400A2 /* DrawLein.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1964F921A9E79F00B400A2 /* DrawLein.swift */; };
 		CF1964FD21AA02E100B400A2 /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = CF1964FB21AA02E100B400A2 /* model.obj */; };
 		CF1964FE21AA02E100B400A2 /* materials.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CF1964FC21AA02E100B400A2 /* materials.mtl */; };
+		CF19650021AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */; };
+		CF19650221AA2CFC00B400A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF19650121AA2CFC00B400A2 /* GoogleService-Info.plist */; };
 		CF849E5C21A99C6F0030ED0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */; };
 		CF849E5E21A99C6F0030ED0A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CF849E5D21A99C6F0030ED0A /* art.scnassets */; };
 		CF849E6021A99C6F0030ED0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF849E5F21A99C6F0030ED0A /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 		CF1964F921A9E79F00B400A2 /* DrawLein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawLein.swift; sourceTree = "<group>"; };
 		CF1964FB21AA02E100B400A2 /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model.obj; sourceTree = "<group>"; };
 		CF1964FC21AA02E100B400A2 /* materials.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = materials.mtl; sourceTree = "<group>"; };
+		CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = fee48647f33447d7ab7cc78bf7bf4e95.mlmodel; sourceTree = "<group>"; };
+		CF19650121AA2CFC00B400A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF849E5821A99C6F0030ED0A /* Find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF849E5D21A99C6F0030ED0A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -108,9 +112,11 @@
 			isa = PBXGroup;
 			children = (
 				CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */,
+				CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */,
 				CF849E8B21A99CE50030ED0A /* Inceptionv3.mlmodel */,
 				CF849E5D21A99C6F0030ED0A /* art.scnassets */,
 				CF849E5F21A99C6F0030ED0A /* ViewController.swift */,
+				CF19650121AA2CFC00B400A2 /* GoogleService-Info.plist */,
 				CF1964FC21AA02E100B400A2 /* materials.mtl */,
 				CF1964FB21AA02E100B400A2 /* model.obj */,
 				CF1964F921A9E79F00B400A2 /* DrawLein.swift */,
@@ -250,6 +256,7 @@
 				CF849E6521A99C700030ED0A /* Assets.xcassets in Resources */,
 				CF1964FE21AA02E100B400A2 /* materials.mtl in Resources */,
 				CF849E6321A99C6F0030ED0A /* Main.storyboard in Resources */,
+				CF19650221AA2CFC00B400A2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +284,7 @@
 				CF849E6021A99C6F0030ED0A /* ViewController.swift in Sources */,
 				CF849E8C21A99CE50030ED0A /* Inceptionv3.mlmodel in Sources */,
 				CF849E5C21A99C6F0030ED0A /* AppDelegate.swift in Sources */,
+				CF19650021AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel in Sources */,
 				CF1964FA21A9E79F00B400A2 /* DrawLein.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

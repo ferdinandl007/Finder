@@ -188,7 +188,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Centre Node - to Centre-Bottom point
         bubbleNode.pivot = SCNMatrix4MakeTranslation( (maxBound.x - minBound.x)/2, minBound.y, bubbleDepth/2)
         // Reduce default text size
-        bubbleNode.scale = SCNVector3Make(0.2, 0.2, 0.2)
+        bubbleNode.scale = SCNVector3Make(0.4, 0.4, 0.4)
         
         // CENTRE POINT NODE
         let sphere = SCNSphere(radius: 0.005)
@@ -373,7 +373,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
 }
 
 extension UIFont {
-    // Based on: https://stackoverflow.com/questions/4713236/how-do-i-set-bold-and-italic-on-uilabel-of-iphone-ipad
     func withTraits(traits:UIFontDescriptor.SymbolicTraits...) -> UIFont {
         let descriptor = self.fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits(traits))
         return UIFont(descriptor: descriptor!, size: 0)
