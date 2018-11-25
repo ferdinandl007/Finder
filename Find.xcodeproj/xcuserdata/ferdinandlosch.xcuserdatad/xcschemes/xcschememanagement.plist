@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
+		<key>Finder.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>FinderUI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 	</dict>
 </dict>
 </plist>

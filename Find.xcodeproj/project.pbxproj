@@ -15,6 +15,12 @@
 		CF1964FE21AA02E100B400A2 /* materials.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CF1964FC21AA02E100B400A2 /* materials.mtl */; };
 		CF19650021AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */; };
 		CF19650221AA2CFC00B400A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF19650121AA2CFC00B400A2 /* GoogleService-Info.plist */; };
+		CF19650B21AA8C3200B400A2 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19650A21AA8C3200B400A2 /* IntentHandler.swift */; };
+		CF19651321AA8C3300B400A2 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19651221AA8C3300B400A2 /* IntentsUI.framework */; };
+		CF19651621AA8C3300B400A2 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19651521AA8C3300B400A2 /* IntentViewController.swift */; };
+		CF19651921AA8C3300B400A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19651721AA8C3300B400A2 /* MainInterface.storyboard */; };
+		CF19651D21AA8C3300B400A2 /* FinderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CF19651121AA8C3300B400A2 /* FinderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CF19652021AA8C3300B400A2 /* Finder.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CF19650821AA8C3200B400A2 /* Finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CF849E5C21A99C6F0030ED0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */; };
 		CF849E5E21A99C6F0030ED0A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CF849E5D21A99C6F0030ED0A /* art.scnassets */; };
 		CF849E6021A99C6F0030ED0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF849E5F21A99C6F0030ED0A /* ViewController.swift */; };
@@ -27,6 +33,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CF19651B21AA8C3300B400A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF849E5021A99C6F0030ED0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF19651021AA8C3300B400A2;
+			remoteInfo = FinderUI;
+		};
+		CF19651E21AA8C3300B400A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF849E5021A99C6F0030ED0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF19650721AA8C3200B400A2;
+			remoteInfo = Finder;
+		};
 		CF849E6F21A99C700030ED0A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CF849E5021A99C6F0030ED0A /* Project object */;
@@ -43,6 +63,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CF19652721AA8C3300B400A2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CF19652021AA8C3300B400A2 /* Finder.appex in Embed App Extensions */,
+				CF19651D21AA8C3300B400A2 /* FinderUI.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2341FF54F0B558F51D946B86 /* Pods-FindTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindTests/Pods-FindTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34963EC3408D7756ED1DB535 /* Pods-FindUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindUITests/Pods-FindUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -53,6 +88,15 @@
 		CF1964FC21AA02E100B400A2 /* materials.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = materials.mtl; sourceTree = "<group>"; };
 		CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = fee48647f33447d7ab7cc78bf7bf4e95.mlmodel; sourceTree = "<group>"; };
 		CF19650121AA2CFC00B400A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CF19650321AA8BB700B400A2 /* Find.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Find.entitlements; sourceTree = "<group>"; };
+		CF19650821AA8C3200B400A2 /* Finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Finder.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF19650A21AA8C3200B400A2 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		CF19650C21AA8C3200B400A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF19651121AA8C3300B400A2 /* FinderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF19651221AA8C3300B400A2 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		CF19651521AA8C3300B400A2 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		CF19651821AA8C3300B400A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		CF19651A21AA8C3300B400A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF849E5821A99C6F0030ED0A /* Find.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF849E5D21A99C6F0030ED0A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -76,6 +120,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CF19650521AA8C3200B400A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF19650E21AA8C3300B400A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF19651321AA8C3300B400A2 /* IntentsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF849E5521A99C6F0030ED0A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,8 +181,28 @@
 				DBF9A44AC3E2F1022D1319B2 /* Pods_Find.framework */,
 				E58549316C12CDEF237178F9 /* Pods_FindTests.framework */,
 				E2B81667D5090FC1F13A6AF4 /* Pods_FindUITests.framework */,
+				CF19651221AA8C3300B400A2 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF19650921AA8C3200B400A2 /* Finder */ = {
+			isa = PBXGroup;
+			children = (
+				CF19650A21AA8C3200B400A2 /* IntentHandler.swift */,
+				CF19650C21AA8C3200B400A2 /* Info.plist */,
+			);
+			path = Finder;
+			sourceTree = "<group>";
+		};
+		CF19651421AA8C3300B400A2 /* FinderUI */ = {
+			isa = PBXGroup;
+			children = (
+				CF19651521AA8C3300B400A2 /* IntentViewController.swift */,
+				CF19651721AA8C3300B400A2 /* MainInterface.storyboard */,
+				CF19651A21AA8C3300B400A2 /* Info.plist */,
+			);
+			path = FinderUI;
 			sourceTree = "<group>";
 		};
 		CF849E4F21A99C6F0030ED0A = {
@@ -132,6 +211,8 @@
 				CF849E5A21A99C6F0030ED0A /* Find */,
 				CF849E7121A99C700030ED0A /* FindTests */,
 				CF849E7C21A99C700030ED0A /* FindUITests */,
+				CF19650921AA8C3200B400A2 /* Finder */,
+				CF19651421AA8C3300B400A2 /* FinderUI */,
 				CF849E5921A99C6F0030ED0A /* Products */,
 				0B3BD1D6C7E4A2FA8A03BF5A /* Pods */,
 				C12D3AED3093D49028AF741B /* Frameworks */,
@@ -144,6 +225,8 @@
 				CF849E5821A99C6F0030ED0A /* Find.app */,
 				CF849E6E21A99C700030ED0A /* FindTests.xctest */,
 				CF849E7921A99C700030ED0A /* FindUITests.xctest */,
+				CF19650821AA8C3200B400A2 /* Finder.appex */,
+				CF19651121AA8C3300B400A2 /* FinderUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +234,7 @@
 		CF849E5A21A99C6F0030ED0A /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				CF19650321AA8BB700B400A2 /* Find.entitlements */,
 				CF849E5B21A99C6F0030ED0A /* AppDelegate.swift */,
 				CF1964FF21AA287800B400A2 /* fee48647f33447d7ab7cc78bf7bf4e95.mlmodel */,
 				CF849E8B21A99CE50030ED0A /* Inceptionv3.mlmodel */,
@@ -189,6 +273,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CF19650721AA8C3200B400A2 /* Finder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF19652421AA8C3300B400A2 /* Build configuration list for PBXNativeTarget "Finder" */;
+			buildPhases = (
+				CF19650421AA8C3200B400A2 /* Sources */,
+				CF19650521AA8C3200B400A2 /* Frameworks */,
+				CF19650621AA8C3200B400A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Finder;
+			productName = Finder;
+			productReference = CF19650821AA8C3200B400A2 /* Finder.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		CF19651021AA8C3300B400A2 /* FinderUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF19652121AA8C3300B400A2 /* Build configuration list for PBXNativeTarget "FinderUI" */;
+			buildPhases = (
+				CF19650D21AA8C3300B400A2 /* Sources */,
+				CF19650E21AA8C3300B400A2 /* Frameworks */,
+				CF19650F21AA8C3300B400A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FinderUI;
+			productName = FinderUI;
+			productReference = CF19651121AA8C3300B400A2 /* FinderUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		CF849E5721A99C6F0030ED0A /* Find */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF849E8221A99C700030ED0A /* Build configuration list for PBXNativeTarget "Find" */;
@@ -198,10 +316,13 @@
 				CF849E5521A99C6F0030ED0A /* Frameworks */,
 				CF849E5621A99C6F0030ED0A /* Resources */,
 				22F1342CACD4416EF062299E /* [CP] Embed Pods Frameworks */,
+				CF19652721AA8C3300B400A2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CF19651C21AA8C3300B400A2 /* PBXTargetDependency */,
+				CF19651F21AA8C3300B400A2 /* PBXTargetDependency */,
 			);
 			name = Find;
 			productName = Find;
@@ -256,8 +377,19 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Ferdinand Lösch";
 				TargetAttributes = {
+					CF19650721AA8C3200B400A2 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					CF19651021AA8C3300B400A2 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					CF849E5721A99C6F0030ED0A = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Siri = {
+								enabled = 1;
+							};
+						};
 					};
 					CF849E6D21A99C700030ED0A = {
 						CreatedOnToolsVersion = 10.1;
@@ -285,11 +417,28 @@
 				CF849E5721A99C6F0030ED0A /* Find */,
 				CF849E6D21A99C700030ED0A /* FindTests */,
 				CF849E7821A99C700030ED0A /* FindUITests */,
+				CF19650721AA8C3200B400A2 /* Finder */,
+				CF19651021AA8C3300B400A2 /* FinderUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CF19650621AA8C3200B400A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF19650F21AA8C3300B400A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF19651921AA8C3300B400A2 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF849E5621A99C6F0030ED0A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +555,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CF19650421AA8C3200B400A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF19650B21AA8C3200B400A2 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF19650D21AA8C3300B400A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF19651621AA8C3300B400A2 /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF849E5421A99C6F0030ED0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +602,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CF19651C21AA8C3300B400A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF19651021AA8C3300B400A2 /* FinderUI */;
+			targetProxy = CF19651B21AA8C3300B400A2 /* PBXContainerItemProxy */;
+		};
+		CF19651F21AA8C3300B400A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF19650721AA8C3200B400A2 /* Finder */;
+			targetProxy = CF19651E21AA8C3300B400A2 /* PBXContainerItemProxy */;
+		};
 		CF849E7021A99C700030ED0A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CF849E5721A99C6F0030ED0A /* Find */;
@@ -450,6 +625,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CF19651721AA8C3300B400A2 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF19651821AA8C3300B400A2 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		CF849E6121A99C6F0030ED0A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -469,6 +652,82 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CF19652221AA8C3300B400A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M8S4HQM6M;
+				INFOPLIST_FILE = FinderUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find.FinderUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF19652321AA8C3300B400A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M8S4HQM6M;
+				INFOPLIST_FILE = FinderUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find.FinderUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CF19652521AA8C3300B400A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M8S4HQM6M;
+				INFOPLIST_FILE = Finder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find.Finder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF19652621AA8C3300B400A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M8S4HQM6M;
+				INFOPLIST_FILE = Finder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find.Finder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		CF849E8021A99C700030ED0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -589,11 +848,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1A3AC5E697AE5E728D6522B /* Pods-Find.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Find/Find.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = Find/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -605,11 +869,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 622DC510D8F3D75245A25EE6 /* Pods-Find.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Find/Find.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = Find/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.Find;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -626,7 +895,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -644,7 +917,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -661,7 +938,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -678,7 +959,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8S4HQM6M;
 				INFOPLIST_FILE = FindUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferdinand.FindUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -690,6 +975,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CF19652121AA8C3300B400A2 /* Build configuration list for PBXNativeTarget "FinderUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF19652221AA8C3300B400A2 /* Debug */,
+				CF19652321AA8C3300B400A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF19652421AA8C3300B400A2 /* Build configuration list for PBXNativeTarget "Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF19652521AA8C3300B400A2 /* Debug */,
+				CF19652621AA8C3300B400A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CF849E5321A99C6F0030ED0A /* Build configuration list for PBXProject "Find" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

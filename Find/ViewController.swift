@@ -14,15 +14,148 @@ import SceneKit.ModelIO
 import Firebase
 import FirebaseDatabase
 
-class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDelegate {
+
+
+
+
+class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDelegate , UITableViewDataSource , UITableViewDelegate{
+    
+    
+    var ls = [String]()
+    var data = NSDictionary()
+    
+    func returnPresent() -> [String]{
+        
+        var present_objects = [String]()
+        for (obj_name,i) in data{
+            let rooms = i as! NSDictionary
+            for (_,j) in rooms{
+                let room = j as! NSDictionary
+                if (room["present"] as! String == "true"){
+                    present_objects.append(obj_name as! String)
+                }
+            }
+            
+        }
+        return present_objects
+    }
+    
+    func returnObjectData(obj_name: String) -> [[String]]{
+        let rooms = data[obj_name] as! NSDictionary
+        
+        var output = [[String]]()
+        
+        for (j,k) in rooms{
+            let room = k as! NSDictionary
+            let room_name = j as! String
+            if (room["present"] as! String == "true"){
+                
+                var temp = [String]()
+                
+                temp.append(room_name)
+                temp.append(room["ls"] as! String)
+                temp.append(room["picture_url"] as! String)
+                temp.append(room["nearest_object"] as!String)
+                
+                output.append(temp)
+            }
+        }
+        
+        return output
+        
+    }
+    
+    
+    func getData(){
+        let databaseRef = Database.database().reference()
+        
+        databaseRef.child("101").queryOrderedByKey().observe(.value, with: { snapshot in
+            
+           let snapshotValue = snapshot.value as? NSDictionary
+            //print(snapshotValue)
+            self.ls = snapshotValue?.allKeys as! [String]
+            
+            
+            self.data = snapshotValue!
+            
+            print("mee")
+            
+            self.tabelView.reloadData()
+            
+        }) { (Error) in
+            print(Error)
+
+                 print("noooooo")
+            
+        }
+ 
+    }
+    
+ 
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.ImpactGenerator.impactOccurred()
+        let temp = returnPresent()[indexPath[indexPath.row]]
+        let room_list = returnObjectData(obj_name: temp)
+        
+        var room = room_list[0]
+        
+
+        imageView.downloaded(from: room[2])
+        imageView.contentMode = .scaleToFill
+        label1.text = room[0]
+        let time =  (Int(NSDate().timeIntervalSince1970) - Int(room[1])!) / 60
+        label2.text = "\(time) minutes since last seen"
+        label3.text = temp
+        UIView.animate(withDuration: 0.3, animations: {
+            self.viewb.frame.origin.y -= 150
+            tableView.alpha = 0
+        }) { (Bool) in
+            tableView.isEditing = false
+        }
+        
+        if (room[3] == "null") {
+            objToFind = [""]
+            objToFind[0] = temp
+        }
+        else{
+            objToFind = [""]
+            objToFind[0] = room[3]
+            objToFind[1] = temp
+        }
+        
+        
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return returnPresent().count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = returnPresent()[indexPath.row]
+        return cell
+    }
+    
     
     // SCENE
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    var ImpactGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    @IBOutlet weak var tabelView: UITableView!
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var viewb: UIVisualEffectView!
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
     var latestPredictionPos = SCNVector3()
     var hasfund = false;
-    var objToFind = ["water bottle","cassette"]
+    var objToFind = [""]
     let dispatchQ = DispatchQueue(label: "com.hw.dis") // A Serial Queue
     
     // COREML
@@ -31,12 +164,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     let synth = AVSpeechSynthesizer()
     var node = SCNNode()
+    var origin = CGPoint()
     
-    @IBOutlet weak var debugTextView: UITextView!
+    var screenCentre : CGPoint = CGPoint()
+    @IBOutlet weak var debugTextView: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -46,9 +181,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Create a new scene
         let scene = SCNScene()
         
+       
+        self.tabelView.delegate = self
+        self.tabelView.dataSource = self
         
+        viewb.layer.cornerRadius = 25
+        tabelView.layer.cornerRadius = 25
+        viewb.clipsToBounds = true
         // Set the scene to the view
         sceneView.scene = scene
+        origin = viewb.frame.origin
         
         // Enable Default Lighting - makes the 3D text a bit poppier.
         sceneView.autoenablesDefaultLighting = true
@@ -57,8 +199,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         
         //////////////////////////////////////////////////
         // Tap Gesture Recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gestureRecognize:)))
-        view.addGestureRecognizer(tapGesture)
+         screenCentre = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
+        
+        Auth.auth().signInAnonymously(completion: { (user, error) in
+            if let err = error {
+                print(err.localizedDescription)
+                return
+            }
+              print("yesss")
+            self.getData()
+        })
+        
         
         //////////////////////////////////////////////////
         
@@ -82,7 +233,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         // Enable plane detection
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = [.horizontal, .vertical]
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -108,6 +259,37 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         }
     }
     
+    
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        // 1
+        //1. Check We Have A Valid ARPlaneAnchor
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        
+        //2. Get It's Alignment
+        if planeAnchor.alignment == .vertical{
+            
+            
+            let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(screenCentre, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
+            
+            if let closestResult = arHitTestResults.first {
+                // Get Coordinates of HitTest
+                let transform : matrix_float4x4 = closestResult.worldTransform
+                let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+                let d = distanceFromCamera(x: worldCoord.x, y: worldCoord.y, z: worldCoord.z)
+                if d < 2.0 {
+                   sppec(text: "terrain!... terrain!... \(String(format:"%.2f", d)) metres ahead Watch out!" )
+                    
+                    
+                    
+                }
+            }
+            
+        }
+    }
+    
+    
+    
     // MARK: - Status Bar: Hide
     override var prefersStatusBarHidden : Bool {
         return true
@@ -115,9 +297,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     // MARK: - Interaction
     
-    @objc func handleTap(gestureRecognize: UITapGestureRecognizer) {
-        sppec(text: "your " + objToFind[1] + " is in the kitchen next to the " + objToFind[0])
-    }
     
     func sppec(text: String){
         var myUtterance = AVSpeechUtterance(string: "")
@@ -169,8 +348,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
         
         // TEXT BILLBOARD CONSTRAINT
-        let billboardConstraint = SCNBillboardConstraint()
-        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        //let billboardConstraint = SCNBillboardConstraint()
+        //billboardConstraint.freeAxes = SCNBillboardAxis.Y
         
         // BUBBLE-TEXT
         let bubble = SCNText(string: text, extrusionDepth: CGFloat(bubbleDepth))
@@ -198,10 +377,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         let sphereNode = SCNNode(geometry: sphere)
         
         // BUBBLE PARENT NODE
-        let bubbleNodeParent = SCNNode()
-        bubbleNodeParent.addChildNode(nodeForURL())
+        let bubbleNodeParent = nodeForURL()
+        bubbleNodeParent.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi / 2), z: 0, duration: 3)))
+        bubbleNodeParent.scale = SCNVector3Make(2, 2, 2)
+        bubbleNodeParent.addChildNode(bubbleNodeParent)
         bubbleNodeParent.addChildNode(sphereNode)
-        bubbleNodeParent.constraints = [billboardConstraint]
+        //bubbleNodeParent.constraints = [billboardConstraint]
         
         return bubbleNodeParent
     }
@@ -227,20 +408,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
         
         let cameraPosition =  self.sceneView.session.currentFrame!.camera.transform.columns.3
-        print("Camera: \(cameraPosition)")
+      
         let vector = SCNVector3Make(cameraPosition.x, cameraPosition.y - 0.4, cameraPosition.z)
 
         if abs(d) > 2.0 {
             node.removeFromParentNode()
             node = CylinderLine(parent: SCNNode(), v1: vector, v2: latestPredictionPos, radius: 0.02, radSegmentCount: 22, color: UIColor.red)
             sceneView.scene.rootNode.addChildNode(node)
+            self.ImpactGenerator.impactOccurred()
+            bb = false
 
-        } else if abs(d) < 2.0 && bb{
+        } else if abs(d) < 2.0 && !bb{
             node.runAction(SCNAction.sequence([SCNAction.fadeOut(duration: 1.5),SCNAction.run({ (SCNNode) in
                 self.node.removeFromParentNode()
                 self.node.removeAllActions()
-                
+
             })]))
+
+            bb = true
         }
        
         if abs(d) > 2.0 && !bbb{
@@ -277,24 +462,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         
         DispatchQueue.main.async {
             // Print Classifications
-            print(classifications)
-            print("--")
+            
+             let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
             
             // Display Debug Text on screen
             var debugText:String = ""
             debugText += classifications
-            self.debugTextView.text = debugText
+            self.debugTextView.text = " "
             
             // Store the latest prediction
             var objectName:String = "…"
             objectName = classifications.components(separatedBy: "-")[0]
             objectName = objectName.components(separatedBy: ",")[0]
             guard let value = Float(classifications.components(separatedBy: "-")[1]) else {return}
-            print(objectName)
-            print(value)
+           
             
-            
-            let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
             
             
             if self.objToFind.count > 1 {
@@ -302,15 +484,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
                     self.latestPrediction = objectName
                     self.makeNode()
                     self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
-                    self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
+                    self.sppec(text: "your " + self.objToFind[1] + "is within 1.5 metres of you")
                     self.hasfund = true;
                 } else if (value >= 0.65 && !self.hasfund2 && self.objToFind[1] == objectName) {
+                    var timer = Timer()
+                    timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: false, block: { (Timer) in
+                        self.hasfund2 = false
+                    })
+                    
                     let node = self.sceneView.scene.rootNode.childNode(withName: "label", recursively: false)
                     node?.removeFromParentNode()
+                    self.ImpactGenerator.impactOccurred()
                     self.makeNode()
                     self.hasfund2 = true;
                     self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
                     self.sppec(text: "you have found your " + self.objToFind[1] + " it is approximately " + String(format:"-%.2f", abs(d) ) + " metres in front of you" )
+                    UIView.animate(withDuration: 0.7, animations: {
+                        self.viewb.frame.origin = self.origin
+                        self.tabelView.alpha = 1
+                    }) { (Bool) in
+                        self.tabelView.isEditing = true
+                    }
                 }
                 
             } else {
@@ -320,14 +514,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
                     self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
                     self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
                     self.hasfund = true;
+                    self.ImpactGenerator.impactOccurred()
+                    UIView.animate(withDuration: 0.7, animations: {
+                        self.viewb.frame.origin = self.origin
+                       self.tabelView.alpha = 1
+                    }) { (Bool) in
+                        self.tabelView.isEditing = true
+                    }
                 }
             }
         
             
             if self.hasfund || self.hasfund2{
                 self.latestPrediction = objectName
-                self.debugTextView.text = String(format:"-%.2f", d)
+                self.debugTextView.text = String(format:"%.2f", abs(d)) + " m"
                 self.chackDist()
+               
             }
            
             
@@ -341,7 +543,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     func distanceFromCamera(x: Float, y:Float, z:Float) -> Float {
         let cameraPosition =  self.sceneView.session.currentFrame!.camera.transform.columns.3
-        print("Camera: \(cameraPosition)")
+      
         let vector = SCNVector3Make(cameraPosition.x - x, cameraPosition.y - y, cameraPosition.z - z)
         
         // Scene units map to meters in ARKit.
@@ -381,3 +583,25 @@ extension UIFont {
     }
 }
 
+
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
+    }
+}

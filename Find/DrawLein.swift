@@ -8,6 +8,16 @@
 
 import Foundation
 import SceneKit
+
+struct myObject {
+    let name : String
+    let Room1 : Dictionary<String,Any>.Element
+    let Room2 : Dictionary<String,Any>.Element
+    let Room3 : Dictionary<String,Any>.Element
+}
+
+
+
 class   CylinderLine: SCNNode
 {
     init( parent: SCNNode,//Needed to add destination point of your line
