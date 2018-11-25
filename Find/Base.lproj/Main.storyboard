@@ -24,8 +24,8 @@
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYD-U8-fpN">
                                 <rect key="frame" x="176.66666666666666" y="395" width="22" height="22"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Way-7N-wNJ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="81"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Way-7N-wNJ">
+                                <rect key="frame" x="0.0" y="19" width="375" height="81"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="Oge-5x-cYu"/>
                                 </constraints>
@@ -49,22 +49,22 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="8DB-OM-PQn">
-                                            <rect key="frame" x="12" y="159" width="76.666666666666671" height="126"/>
+                                            <rect key="frame" x="12" y="159" width="76.666666666666671" height="118.66666666666669"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYy-fN-Lzr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="76.666666666666671" height="36"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="76.666666666666671" height="32.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                     <color key="textColor" red="0.41960784309999999" green="0.78823529410000004" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSX-2s-1vg">
-                                                    <rect key="frame" x="0.0" y="45" width="76.666666666666671" height="36"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                    <rect key="frame" x="0.0" y="41.333333333333343" width="76.666666666666671" height="32.333333333333343"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                     <color key="textColor" red="0.41960784309999999" green="0.78823529410000004" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-TH-27x">
-                                                    <rect key="frame" x="0.0" y="90" width="76.666666666666671" height="36"/>
+                                                    <rect key="frame" x="0.0" y="82.666666666666657" width="76.666666666666671" height="36"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                     <color key="textColor" red="0.41960784309999999" green="0.78823529410000004" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -87,18 +87,18 @@
                                         <constraint firstAttribute="trailing" secondItem="0kD-T5-IEp" secondAttribute="trailing" id="r5j-aS-VMa"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rYD-U8-fpN" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="0SI-aw-5xE"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="4YA-Sz-9zT"/>
-                            <constraint firstItem="Way-7N-wNJ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="C2J-9d-0IQ"/>
+                            <constraint firstItem="Way-7N-wNJ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="-25" id="C2J-9d-0IQ"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="SUP-5m-JMw"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="Tt1-Ae-8ym"/>
                             <constraint firstItem="rYD-U8-fpN" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="VOi-PZ-fEB"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="top" secondItem="Way-7N-wNJ" secondAttribute="bottom" constant="-81" id="WtN-pd-PhW"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="top" secondItem="Way-7N-wNJ" secondAttribute="bottom" constant="-56" id="WtN-pd-PhW"/>
                             <constraint firstItem="Way-7N-wNJ" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="srL-1Z-Hxv"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="u3d-7S-fdZ"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="Way-7N-wNJ" secondAttribute="trailing" id="wxR-iC-BXZ"/>

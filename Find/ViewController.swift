@@ -13,7 +13,7 @@ import Vision
 import SceneKit.ModelIO
 import Firebase
 import FirebaseDatabase
-
+import Intents
 
 
 
@@ -61,6 +61,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             }
         }
         
+        print(output)
+        
         return output
         
     }
@@ -78,7 +80,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
             
             self.data = snapshotValue!
             
-            print("mee")
+            
             
             self.tabelView.reloadData()
             
@@ -97,7 +99,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.ImpactGenerator.impactOccurred()
-        let temp = returnPresent()[indexPath[indexPath.row]]
+        let temp = returnPresent()[indexPath.row]
         let room_list = returnObjectData(obj_name: temp)
         
         var room = room_list[0]
@@ -111,21 +113,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         label3.text = temp
         UIView.animate(withDuration: 0.3, animations: {
             self.viewb.frame.origin.y -= 150
-            tableView.alpha = 0
+            self.tabelView.alpha = 0
         }) { (Bool) in
-            tableView.isEditing = false
+            self.tabelView.isHidden = true
         }
         
-        if (room[3] == "null") {
-            objToFind = [""]
+        if (room[3] == "") {
+            objToFind = ["",""]
             objToFind[0] = temp
         }
         else{
-            objToFind = [""]
+            objToFind = ["",""]
             objToFind[0] = room[3]
             objToFind[1] = temp
         }
-        
+        if objToFind[1] == "" {
+            sppec(text: "We have localized the " + temp + " in " + room[0] + ". Happy hunting!")
+        } else {
+              sppec(text: "The " + temp + " is next to the " + room[3])
+        }
+      
         
         
     }
@@ -137,7 +144,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = returnPresent()[indexPath.row]
+        let temp = returnPresent()[indexPath.row]
+        let room_list = returnObjectData(obj_name: temp)
+        
+        var room = room_list[0]
+        
+        cell.textLabel?.text = "\(returnPresent()[indexPath.row]) in \(room.first!)"
         return cell
     }
     
@@ -155,7 +167,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
     var latestPredictionPos = SCNVector3()
     var hasfund = false;
-    var objToFind = [""]
+    var objToFind = ["",""]
     let dispatchQ = DispatchQueue(label: "com.hw.dis") // A Serial Queue
     
     // COREML
@@ -181,6 +193,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Create a new scene
         let scene = SCNScene()
         
+        donateInteraction()
        
         self.tabelView.delegate = self
         self.tabelView.dataSource = self
@@ -214,7 +227,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         //////////////////////////////////////////////////
         
         // Set up Vision Model
-        guard let selectedModel = try? VNCoreMLModel(for: Inceptionv3().model) else {
+        guard let selectedModel = try? VNCoreMLModel(for: ImageClassifier().model) else {
             fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/ . Also ensure the model is part of a target (see: https://stackoverflow.com/questions/45884085/model-is-not-part-of-any-target-add-the-model-to-a-target-to-enable-generation ")
         }
         
@@ -226,6 +239,56 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         // Begin Loop to Update CoreML
         loopCoreMLUpdate()
     }
+    
+    func donateInteraction() {
+        let intent = PhotoOfTheDayIntent()
+        
+        intent.suggestedInvocationPhrase = "Energize"
+        
+        let interaction = INInteraction(intent: intent, response: nil)
+        
+        interaction.donate { (error) in
+            if error != nil {
+               
+            }
+        }
+    }
+    
+    
+    
+    public func sayHi() {
+        usleep(2000000)
+        let temp = "Water Bottle"
+        let room_list = returnObjectData(obj_name: temp)
+        
+        var room = room_list[0]
+        
+        
+        imageView.downloaded(from: room[2])
+        imageView.contentMode = .scaleToFill
+        label1.text = room[0]
+        let time =  (Int(NSDate().timeIntervalSince1970) - Int(room[1])!) / 60
+        label2.text = "\(time) minutes since last seen"
+        label3.text = temp
+        UIView.animate(withDuration: 0.3, animations: {
+            self.viewb.frame.origin.y -= 150
+            self.tabelView.alpha = 0
+        }) { (Bool) in
+            self.tabelView.isHidden = true
+        }
+        
+        if (room[3] == "null") {
+            objToFind = ["",""]
+            objToFind[0] = temp
+        }
+        else{
+            objToFind = ["",""]
+            objToFind[0] = room[3]
+            objToFind[1] = temp
+        }
+        sppec(text: "The " + temp + " is next to the " + room[3])
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -380,8 +443,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
         let bubbleNodeParent = nodeForURL()
         bubbleNodeParent.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi / 2), z: 0, duration: 3)))
         bubbleNodeParent.scale = SCNVector3Make(2, 2, 2)
-        bubbleNodeParent.addChildNode(bubbleNodeParent)
-        bubbleNodeParent.addChildNode(sphereNode)
+        //bubbleNodeParent.addChildNode(bubbleNodeParent)
+       // bubbleNodeParent.addChildNode(sphereNode)
         //bubbleNodeParent.constraints = [billboardConstraint]
         
         return bubbleNodeParent
@@ -405,6 +468,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
     var bb = false;
     var bbb = false
     func chackDist(){
+        
+        
+        
         let d =  self.distanceFromCamera(x: self.latestPredictionPos.x,y: self.latestPredictionPos.y,z: self.latestPredictionPos.z)
         
         let cameraPosition =  self.sceneView.session.currentFrame!.camera.transform.columns.3
@@ -478,49 +544,68 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVSpeechSynthesizerDe
            
             
             
-            
-            if self.objToFind.count > 1 {
-                if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
+            print(self.objToFind)
+            if self.objToFind[1] != "" {
+                if (value >= 0.87 && !self.hasfund && self.objToFind[0] == objectName) {
                     self.latestPrediction = objectName
                     self.makeNode()
                     self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
-                    self.sppec(text: "your " + self.objToFind[1] + "is within 1.5 metres of you")
+                    self.sppec(text: "your " + self.objToFind[0] + "is within 1.5 metres of you")
                     self.hasfund = true;
-                } else if (value >= 0.65 && !self.hasfund2 && self.objToFind[1] == objectName) {
-                    var timer = Timer()
-                    timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: false, block: { (Timer) in
-                        self.hasfund2 = false
-                    })
+                   
+                    
+                } else if (value >= 0.85 && !self.hasfund2 && self.objToFind[1] == objectName) {
                     
                     let node = self.sceneView.scene.rootNode.childNode(withName: "label", recursively: false)
                     node?.removeFromParentNode()
+                    
+                    var timer = Timer()
+                    timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false, block: { (Timer) in
+                        self.hasfund = false;
+                        self.hasfund2 = false;
+                        let node = self.sceneView.scene.rootNode.childNode(withName: "label", recursively: false)
+                        node?.removeFromParentNode()
+                        self.objToFind = ["",""]
+                    })
+                
                     self.ImpactGenerator.impactOccurred()
                     self.makeNode()
                     self.hasfund2 = true;
                     self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
                     self.sppec(text: "you have found your " + self.objToFind[1] + " it is approximately " + String(format:"-%.2f", abs(d) ) + " metres in front of you" )
-                    UIView.animate(withDuration: 0.7, animations: {
+                    UIView.animate(withDuration: 2, animations: {
                         self.viewb.frame.origin = self.origin
                         self.tabelView.alpha = 1
                     }) { (Bool) in
-                        self.tabelView.isEditing = true
+                        self.tabelView.isHidden = false
                     }
+                   
                 }
                 
             } else {
-                if (value >= 0.65 && !self.hasfund && self.objToFind[0] == objectName) {
-                    self.latestPrediction = objectName
-                    self.makeNode()
-                    self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
-                    self.sppec(text: "your " + self.objToFind[1] + "is with him 1.5 metres of you")
-                    self.hasfund = true;
+                if (value >= 0.85 && !self.hasfund && self.objToFind[0] == objectName) {
+                    
                     self.ImpactGenerator.impactOccurred()
-                    UIView.animate(withDuration: 0.7, animations: {
+                    self.makeNode()
+                    self.hasfund = true;
+                    self.synth.stopSpeaking(at: AVSpeechBoundary(rawValue: 0)!)
+                    self.sppec(text: "you have found your " + self.objToFind[0] + " it is approximately " + String(format:"-%.2f", abs(d) ) + " metres in front of you" )
+                    UIView.animate(withDuration: 1, animations: {
                         self.viewb.frame.origin = self.origin
-                       self.tabelView.alpha = 1
+                        self.tabelView.alpha = 1
                     }) { (Bool) in
-                        self.tabelView.isEditing = true
+                        self.tabelView.isHidden = false
                     }
+                    
+                    var timer = Timer()
+                    timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false, block: { (Timer) in
+                        self.objToFind = ["",""]
+                        self.hasfund = false;
+                        self.hasfund2 = false;
+                        let node = self.sceneView.scene.rootNode.childNode(withName: "label", recursively: false)
+                        node?.removeFromParentNode()
+                    })
+                    
                 }
             }
         

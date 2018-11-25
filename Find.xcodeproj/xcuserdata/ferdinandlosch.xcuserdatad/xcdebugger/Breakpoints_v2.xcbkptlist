@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Find/ViewController.swift"
-            timestampString = "564822854.434588"
+            timestampString = "564842203.30481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
             landmarkName = "chackDist()"
             landmarkType = "7">
          </BreakpointContent>
