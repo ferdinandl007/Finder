@@ -1,7 +1,7 @@
 # Finder
 
 ### View OxfordHack 2018 project Finder on Devpost
-[![Devpost]()](https://devpost.com/software/finder-owctq9)
+[[Devpost]](https://devpost.com/software/finder-owctq9)
 
 
 ## Inspiration
