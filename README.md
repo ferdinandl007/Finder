@@ -2,7 +2,7 @@
 
 ### View OxfordHack 2018 project Finder on Devpost
 [[Devpost]](https://devpost.com/software/finder-owctq9)
-
+This project was selected as the winner of both the Microsoft: Azure Champ Challenge and Qualcomm: Best IoT Hack at OxfordHack 2018
 
 ## Inspiration
 We all know the trouble that a lost key can cause. Searching for it everywhere and trying to remember where it was last seen may take a long time which in turn leads to you being late for a meeting or other important events. Even worse is looking around blindly for your own glasses when you misplaced them. Thinking about this issue further, we were wondering how people with a serious vision impairment are supposed to look for their lost object, be it a key, their wallet or even a rubber duck to take a nice hot bath with. That's the reason why we created Finder, a solution to find objects via an iPhone that is accessible to everyone.
